@@ -1,24 +1,27 @@
 <!DOCTYPE html>
 <html lang="en-US">
-<head>
-  <meta charset="UTF-8">
-  <title>A sample page</title>
-  <script src="helper.js"></script>
-</head>
-<body>
-  <div id="main">
 
-  </div>
-  <script>
-	var birthYear = window.prompt('Please enter your birth year');
-	var newDate = new Date();
-	var year = newDate.getFullYear();
-	if (birthYear > 0 && birthYear <= year) {
-		echo('Your age is: ' + (year - birthYear));
-	} else {
-		echo('Please enter valid birth year.');
-	}
-	
-  </script>
+<head>
+	<meta charset="UTF-8">
+	<title>A sample page</title>
+	<script src="helper.js"></script>
+</head>
+
+<body>
+	<div id="main">
+
+	</div>
+	<script>
+		const birthYear = window.prompt('Please enter your birth year');
+		const newDate = new Date();
+		const year = newDate.getFullYear();
+		if (birthYear > 0 && birthYear <= year) {
+			echo('Your age is: ' + (year - birthYear));
+		} else {
+			echo('Please enter valid birth year.');
+		}
+
+	</script>
 </body>
+
 </html>
