@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8" />
+    <title>A sample page</title>
+    <script src="helper.js"></script>
+  </head>
+
+  <body>
+    <div id="main"></div>
+    <script>
+      function getMonth(numofMonth) {
+        const months = [
+          "January",
+          "February",
+          "March",
+          "April",
+          "May",
+          "June",
+          "July",
+          "August",
+          "September",
+          "October",
+          "November",
+          "December"
+        ];
+        return months[parseInt(numofMonth) - 1];
+      }
+      const numofMonth = prompt("Enter the number of month you were born");
+      if (numofMonth > 0 && numofMonth <= 12) {
+        echo(getMonth(numofMonth));
+      } else {
+        echo("Please enter a valid month number");
+      }
+    </script>
+  </body>
+</html>
