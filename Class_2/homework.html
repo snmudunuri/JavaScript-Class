@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <meta charset="UTF-8">
+  <title>A sample page</title>
+  <script src="helper.js"></script>
+</head>
+
+<body>
+  <div id="main">
+
+  </div>
+  <script>
+    const userInput = window.prompt('Please enter your birth day', 'YYYY-MM-DD'); //taking user input for birthdate in yyyy-mm-dd format
+    const birthDate = new Date(userInput); //converting the user input to date
+    const newDate = new Date(); //taking the current date from system
+    if (birthDate <= newDate) {    //checking if entered date is less than today's date or not
+      const agebyDays = Math.round((newDate - birthDate) / 86400000);     //caluclating the total number of days between two dates.. 86400000 is number of milliseconds per day
+      echo('Hello there!! Your date of birth is: ' + userInput);
+      echo('Your age in number of days is: ' + agebyDays + ' days.');        //printing the value to the console
+      echo(String.fromCodePoint(0x1F600));      // printing a smiley face :P
+    }
+    else {
+      echo('Please enter valid birth date 😡');      // printing error message if entered date is invalid
+    }
+  </script>
+</body>
+
+</html>
