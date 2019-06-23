@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8" />
+    <title>A sample page</title>
+    <script src="helper.js"></script>
+  </head>
+
+  <body>
+    <div id="main"></div>
+    <script>
+      function isMultiple(userInput) {
+        if (userInput % 15 == 0) {
+          echo("FizzBuzz");
+        } else if (userInput % 5 == 0) {
+          echo("Buzz");
+        } else if (userInput % 3 == 0) {
+          echo("Fizz");
+        } else {
+          echo(userInput);
+        }
+      }
+      for(let i=0;i<=100;i++){
+          console.log(i);
+        isMultiple(i);
+      }
+      
+    </script>
+  </body>
+</html>

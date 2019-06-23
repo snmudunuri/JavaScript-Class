@@ -11,32 +11,26 @@
     <script>
       function getZodiac(year) {
         const months = [
-          "Rat 子",
-          "Ox 丑",
-          "Tiger 寅",
-          "Rabit 卯",
-          "Dragon 辰",
-          "Snake 巳",
-          "Horse 午",
-          "Goat 未",
-          "Monkey 申",
-          "Rooster 酉",
-          "Dog 戌",
-          "Pig 亥"
+          "申 Monkey",
+          "酉 Rooster",
+          "戌 Dog",
+          "亥 Pig",
+          "子 Rat",
+          "丑 Ox",
+          "寅 Tiger",
+          "卯 Rabbit",
+          "辰 Dragon",
+          "巳 Snake",
+          "午 Horse",
+          "未 Goat"
         ];
-        return months[(year - 1924) % 12];
+        return months[year % 12];
       }
       const userInput = prompt(
         "Enter a year to find out the chinese zodiac sign"
       );
       const year = parseInt(userInput);
-      if (year >= 1924) {
-        echo(
-          "Chinese Zodiac sign for year " + year + " is: " + getZodiac(year)
-        );
-      } else {
-        echo("Please enter a valid year greater than 1924");
-      }
+      echo("Chinese Zodiac sign for year " + year + " is: " + getZodiac(year));
     </script>
   </body>
 </html>
