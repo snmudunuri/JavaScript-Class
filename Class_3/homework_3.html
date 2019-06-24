@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8" />
+    <title>A sample page</title>
+    <script src="helper.js"></script>
+  </head>
+
+  <body>
+    <div id="main"></div>
+    <script>
+      function getZodiac(bithDate) {
+        const dateOfBirth = new Date(birthDate + " 00:00");
+        const month = dateOfBirth.getMonth();
+        const day = dateOfBirth.getDate();
+        const zodiac = [
+          "Capricorn",
+          "Aquarius",
+          "Pisces",
+          "Aries",
+          "Taurus",
+          "Gemini",
+          "Cancer",
+          "Leo",
+          "Virgo",
+          "Libra",
+          "Scorpio",
+          "Sagittarius",
+          "Capricorn"
+        ];
+        const lastDay = [19, 18, 20, 19, 20, 20, 22, 22, 22, 22, 21, 21];
+        if (day > lastDay[month]) {
+          return zodiac[month + 1];
+        }
+        return zodiac[month];
+      }
+      const birthDate = prompt("Enter your birthdate", "YYYY-MM-DD");
+      echo("Your Zodiac sign is: " + getZodiac(birthDate));
+    </script>
+  </body>
+</html>

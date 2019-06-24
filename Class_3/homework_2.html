@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8" />
+    <title>A sample page</title>
+    <script src="helper.js"></script>
+  </head>
+
+  <body>
+    <div id="main"></div>
+    <script>
+      function getTime(numOfHours) {
+        const today = new Date();
+        today.setHours(today.getHours() + numOfHours);
+        return today;
+      }
+      const numOfHours = prompt(
+        "Enter a number to find out the time after those many hours"
+      );
+      echo(
+        "After " +
+          numOfHours +
+          "hours, time will be " +
+          getTime(parseInt(numOfHours))
+      );
+    </script>
+  </body>
+</html>
