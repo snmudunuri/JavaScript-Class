@@ -9,19 +9,19 @@
   <body>
     <div id="main"></div>
     <script>
-      function getTime(numofHours) {
+      function getTime(numOfHours) {
         const today = new Date();
-        today.setHours(today.getHours() + numofHours);
+        today.setHours(today.getHours() + numOfHours);
         return today;
       }
-      const numofHours = prompt(
+      const numOfHours = prompt(
         "Enter a number to find out the time after those many hours"
       );
       echo(
         "After " +
-          numofHours +
+          numOfHours +
           "hours, time will be " +
-          getTime(parseInt(numofHours))
+          getTime(parseInt(numOfHours))
       );
     </script>
   </body>

@@ -10,9 +10,12 @@
     <div id="main"></div>
     <script>
       function getZodiac(bithDate) {
-        month = new Date(birthDate).getMonth();
-        dateofBirth = new Date(birthDate).getDate();
-        var zodiac = [
+        const month = new Date(birthDate).getMonth();
+        const arrOfBirthdate = Array.from(birthDate);
+        const arrOfDate = [arrOfBirthdate[8], arrOfBirthdate[9]];
+
+        const dateOfBirth = arrOfDate.join("");
+        const zodiac = [
           "Capricorn",
           "Aquarius",
           "Pisces",
@@ -27,12 +30,11 @@
           "Sagittarius",
           "Capricorn"
         ];
-        var last_day = [19, 18, 20, 19, 20, 20, 22, 22, 22, 22, 21, 21];
-        if (dateofBirth + 1 > last_day[month]) {
+        const lastDay = [19, 18, 20, 19, 20, 20, 22, 22, 22, 22, 21, 21];
+        if (dateOfBirth > lastDay[month]) {
           return zodiac[month + 1];
-        } else {
-          return zodiac[month];
         }
+        return zodiac[month];
       }
       const birthDate = prompt("Enter your birthdate", "YYYY-MM-DD");
       echo("Your Zodiac sign is: " + getZodiac(birthDate));
