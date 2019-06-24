@@ -11,10 +11,7 @@
     <script>
       function getZodiac(bithDate) {
         const month = new Date(birthDate).getMonth();
-        const arrOfBirthdate = Array.from(birthDate);
-        const arrOfDate = [arrOfBirthdate[8], arrOfBirthdate[9]];
-
-        const dateOfBirth = arrOfDate.join("");
+        const dateOfBirth = new Date(birthDate + " 00:00").getDate();
         const zodiac = [
           "Capricorn",
           "Aquarius",
