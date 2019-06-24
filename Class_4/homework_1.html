@@ -9,25 +9,24 @@
   <body>
     <div id="main"></div>
     <script>
-      function isPalindrome(UserInput) {
-        const inputString = UserInput.toLowerCase();
+      function isPalindrome(userInput) {
+        const inputString = userInput.toLowerCase();
         const charArray = Array.from(inputString);
-        const reversearray = charArray.reverse();
-        const palindromeString = reversearray.join("");
+        const reverseArray = charArray.reverse();
+        const palindromeString = reverseArray.join("");
         if (inputString == palindromeString) {
           return true;
-        } else {
-          return false;
         }
+        return false;
       }
-      const UserInput = prompt(
+      const userInput = prompt(
         "Please enter a word to check whether it is a palindrome or not"
       );
 
-      if (isPalindrome(UserInput)) {
-        echo(UserInput + " is a plaindrome");
+      if (isPalindrome(userInput)) {
+        echo(userInput + " is a plaindrome");
       } else {
-        echo(UserInput + " is not a plaindrome");
+        echo(userInput + " is not a plaindrome");
       }
 
       echo("Examples:");

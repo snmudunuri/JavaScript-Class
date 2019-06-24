@@ -16,10 +16,10 @@
         }
         return value;
       }
-      const firstN = prompt("Please enter first number");
-      const secondN = prompt("Please enter second number");
-      firstNum = parseInt(firstN);
-      secondNum = parseInt(secondN);
+      const num1 = prompt("Please enter first number");
+      const num2 = prompt("Please enter second number");
+      const firstNum = parseInt(num1);
+      const secondNum = parseInt(num2);
       if (firstNum == 0 || secondNum == 0) {
         echo("Product of " + firstNum + " and " + secondNum + " is: 0");
       } else if (firstNum < 0 && secondNum > 0) {
