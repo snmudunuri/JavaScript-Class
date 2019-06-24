@@ -10,8 +10,9 @@
     <div id="main"></div>
     <script>
       function getZodiac(bithDate) {
-        const month = new Date(birthDate).getMonth();
-        const dateOfBirth = new Date(birthDate + " 00:00").getDate();
+        const dateOfBirth = new Date(birthDate + " 00:00");
+        const month = dateOfBirth.getMonth();
+        const day = dateOfBirth.getDate();
         const zodiac = [
           "Capricorn",
           "Aquarius",
@@ -28,7 +29,7 @@
           "Capricorn"
         ];
         const lastDay = [19, 18, 20, 19, 20, 20, 22, 22, 22, 22, 21, 21];
-        if (dateOfBirth > lastDay[month]) {
+        if (day > lastDay[month]) {
           return zodiac[month + 1];
         }
         return zodiac[month];
