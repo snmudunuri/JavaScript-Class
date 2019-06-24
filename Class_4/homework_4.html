@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8" />
+    <title>A sample page</title>
+    <script src="helper.js"></script>
+  </head>
+
+  <body>
+    <div id="main"></div>
+    <script>
+      function product(a, b) {
+        let value = 0;
+        for (let m = 0; m < b; m++) {
+          value = value + a;
+        }
+        return value;
+      }
+
+      for (let i = 0; i <= 100; i++) {
+        echo(i + " X " + i + " = " + product(i, i));
+      }
+    </script>
+  </body>
+</html>

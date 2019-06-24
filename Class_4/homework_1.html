@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8" />
+    <title>A sample page</title>
+    <script src="helper.js"></script>
+  </head>
+
+  <body>
+    <div id="main"></div>
+    <script>
+      function isPalindrome(UserInput) {
+        const inputString = UserInput.toLowerCase();
+        const charArray = Array.from(inputString);
+        const reversearray = charArray.reverse();
+        const palindromeString = reversearray.join("");
+        if (inputString == palindromeString) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+      const UserInput = prompt(
+        "Please enter a word to check whether it is a palindrome or not"
+      );
+
+      if (isPalindrome(UserInput)) {
+        echo(UserInput + " is a plaindrome");
+      } else {
+        echo(UserInput + " is not a plaindrome");
+      }
+
+      echo("Examples:");
+      echo('Is "Malayalam" a palindrome: ' + isPalindrome("Malayalam"));
+      echo('Is "Apple" a palindrome: ' + isPalindrome("Apple"));
+    </script>
+  </body>
+</html>
