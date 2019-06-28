@@ -10,14 +10,12 @@
     <div id="main"></div>
     <script>
       function isPalindrome(userInput) {
-        const inputString = userInput.toLowerCase();
-        const charArray = Array.from(inputString);
-        const reverseArray = charArray.reverse();
-        const palindromeString = reverseArray.join("");
-        if (inputString == palindromeString) {
-          return true;
-        }
-        return false;
+       for(let i =0; i<(userInput.length/2); i++){
+         if(userInput[i]!=userInput[userInput.length-i-1]){
+           return false;
+         }
+         return true;
+       }
       }
       const userInput = prompt(
         "Please enter a word to check whether it is a palindrome or not"
