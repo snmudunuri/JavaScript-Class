@@ -8,84 +8,89 @@
   <body>
     <div id="main"></div>
     <script>
-      function userInformation(userName) {
-        this.username = userName;
-        this.password = "";
-        this.email = "";
-        this.birthday = "";
-      }
-
-      function is13Years(date, month, year) {
-        return new Date(year + 13, month, date) <= new Date();
-      }
-
-      function emailCheck(email) {
-        let count = 0;
-        for (let i = 0; i < email.length; i++) {
-          if (email.charAt(i) == "@") {
-            count = count + 1;
-          }
+      (function() {
+        function userInformation(userName) {
+          this.username = userName;
+          this.password = "";
+          this.email = "";
+          this.birthday = "";
         }
-        return count;
-      }
-      const userName = prompt("Enter your username");
-      let password = prompt(
-        "Enter a password",
-        "Password must be great than 8 characters"
-      );
-      while (password.length < 8) {
-        password = prompt(
-          "Password should be greater 8 characters. Please enter password again",
+
+        function is13Years(date, month, year) {
+          return new Date(year + 13, month, date) <= new Date();
+        }
+
+        function emailCheck(email) {
+          let count = 0;
+          for (let i = 0; i < email.length; i++) {
+            if (email.charAt(i) == "@") {
+              count = count + 1;
+            }
+          }
+          return count;
+        }
+        const userName = prompt("Enter your username");
+        let password = prompt(
+          "Enter a password",
           "Password must be great than 8 characters"
         );
-      }
-      let passwordConfirm = prompt(
-        "Confirm password",
-        "Confirm password should match with entered password"
-      );
-
-      while (passwordConfirm != password) {
-        passwordConfirm = prompt(
-          "Password didn't match. Please enter confirm password again",
+        while (password.length < 8) {
+          password = prompt(
+            "Password should be greater 8 characters. Please enter password again",
+            "Password must be great than 8 characters"
+          );
+        }
+        let passwordConfirm = prompt(
+          "Confirm password",
           "Confirm password should match with entered password"
         );
-      }
 
-      let email = prompt("Enter your email ID");
+        while (passwordConfirm != password) {
+          passwordConfirm = prompt(
+            "Password didn't match. Please enter confirm password again",
+            "Confirm password should match with entered password"
+          );
+        }
 
-      while (emailCheck(email) != 1) {
-        email = prompt("Please enter a valid email ID");
-      }
+        let email = prompt("Enter your email ID");
 
-      let dateOfBirth = prompt("Please enter your date of birth", "MM-DD-YYYY");
+        while (emailCheck(email) != 1) {
+          email = prompt("Please enter a valid email ID");
+        }
 
-      let dateFormatOfDateOfBirth = new Date(dateOfBirth + " 00:00");
-
-      while (dateFormatOfDateOfBirth == "Invalid Date") {
-        dateOfBirth = prompt(
-          "Invalid Date of Birth. Please enter a valid date",
+        let dateOfBirth = prompt(
+          "Please enter your date of birth",
           "MM-DD-YYYY"
         );
-        dateFormatOfDateOfBirth = new Date(dateOfBirth + " 00:00");
-      }
 
-      const date = dateFormatOfDateOfBirth.getDate();
-      const month = dateFormatOfDateOfBirth.getMonth();
-      const year = dateFormatOfDateOfBirth.getFullYear();
+        let dateFormatOfDateOfBirth = new Date(dateOfBirth + " 00:00");
 
-      if (is13Years(date, month, year)) {
-        echo("Successfully created account for " + userName);
-        const userAccount = new userInformation(userName);
-        userAccount.password = password;
-        userAccount.email = email;
-        userAccount.birthday = dateOfBirth;
+        while (dateFormatOfDateOfBirth == "Invalid Date") {
+          dateOfBirth = prompt(
+            "Invalid Date of Birth. Please enter a valid date",
+            "MM-DD-YYYY"
+          );
+          dateFormatOfDateOfBirth = new Date(dateOfBirth + " 00:00");
+        }
 
-        echo("User Name: " + userAccount.username);
-        echo("Email: " + userAccount.email);
-        echo("Date of Birth: " + userAccount.birthday);
-      } else {
-        echo("To register one must be 13 years or older.");
-      }
+        const date = dateFormatOfDateOfBirth.getDate();
+        const month = dateFormatOfDateOfBirth.getMonth();
+        const year = dateFormatOfDateOfBirth.getFullYear();
+
+        if (is13Years(date, month, year)) {
+          echo("Successfully created account for " + userName);
+          const userAccount = new userInformation(userName);
+          userAccount.password = password;
+          userAccount.email = email;
+          userAccount.birthday = dateOfBirth;
+
+          echo("User Name: " + userAccount.username);
+          echo("Email: " + userAccount.email);
+          echo("Date of Birth: " + userAccount.birthday);
+        } else {
+          echo("To register one must be 13 years or older.");
+        }
+      })();
     </script>
   </body>
 </html>
