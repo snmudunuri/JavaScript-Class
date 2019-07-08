@@ -28,11 +28,17 @@
         }
         return count;
       }
-      const userName = prompt("Enter your full name");
-      const password = prompt(
+      const userName = prompt("Enter your username");
+      let password = prompt(
         "Enter a password",
         "Password must be great than 8 characters"
       );
+      while (password.length < 8) {
+        password = prompt(
+          "Password should be greater 8 characters. Please enter password again",
+          "Password must be great than 8 characters"
+        );
+      }
       let passwordConfirm = prompt(
         "Confirm password",
         "Confirm password should match with entered password"
@@ -51,12 +57,17 @@
         email = prompt("Please enter a valid email ID");
       }
 
-      const dateOfBirth = prompt(
-        "Please enter your date of birth",
-        "MM-DD-YYYY"
-      );
+      let dateOfBirth = prompt("Please enter your date of birth", "MM-DD-YYYY");
 
-      const dateFormatOfDateOfBirth = new Date(dateOfBirth + " 00:00");
+      let dateFormatOfDateOfBirth = new Date(dateOfBirth + " 00:00");
+
+      while (dateFormatOfDateOfBirth == "Invalid Date") {
+        dateOfBirth = prompt(
+          "Invalid Date of Birth. Please enter a valid date",
+          "MM-DD-YYYY"
+        );
+        dateFormatOfDateOfBirth = new Date(dateOfBirth + " 00:00");
+      }
 
       const date = dateFormatOfDateOfBirth.getDate();
       const month = dateFormatOfDateOfBirth.getMonth();
