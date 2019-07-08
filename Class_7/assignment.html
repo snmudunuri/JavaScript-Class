@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8" />
+    <title>A sample page</title>
+    <script src="helper.js"></script>
+  </head>
+  <body>
+    <div id="main"></div>
+    <script>
+      function getZodiac(year) {
+        const months = [
+          "申 Monkey",
+          "酉 Rooster",
+          "戌 Dog",
+          "亥 Pig",
+          "子 Rat",
+          "丑 Ox",
+          "寅 Tiger",
+          "卯 Rabbit",
+          "辰 Dragon",
+          "巳 Snake",
+          "午 Horse",
+          "未 Goat"
+        ];
+        switch (year) {
+          case 0:
+            return months[0];
+          case 1:
+            return months[1];
+          case 2:
+            return months[2];
+          case 3:
+            return months[3];
+          case 4:
+            return months[4];
+          case 5:
+            return months[5];
+          case 6:
+            return months[6];
+          case 7:
+            return months[7];
+          case 8:
+            return months[8];
+          case 9:
+            return months[9];
+          case 10:
+            return months[10];
+          case 11:
+            return months[11];
+          default:
+            return "Please enter a valid year to know the zodiac sign!!";
+        }
+      }
+      const userInput = prompt(
+        "Enter a year to find out the chinese zodiac sign"
+      );
+      const year = parseInt(userInput);
+      const currentYear = new Date().getFullYear();
+      const currentZodiac = getZodiac(currentYear % 12);
+      const userZodiac = getZodiac(year % 12);
+
+      const diff = (currentYear - year) % 12;
+      const nextYear = currentYear + 12 - diff;
+
+      echo("Chinese Zodiac sign for year " + year + " is: " + userZodiac);
+
+      echo(
+        "Next two Years that observe this sign are: " +
+          nextYear +
+          " and " +
+          (nextYear + 12)
+      );
+    </script>
+  </body>
+</html>
