@@ -39,7 +39,7 @@
       <p>
         <em>Number of images</em>: 14
         <br />
-        <em>Generated on</em>: Thursday, July 11, 2019
+        <em>Generated on</em>: Thursday, July 10, 2019
       </p>
       <hr />
     </header>
@@ -109,7 +109,17 @@
     </div>
     <script>
       (function() {
-        
+        const imgElements = document.querySelectorAll("img");
+
+        for (let imgElement of imgElements) {
+          const newElement = document.createElement("figcaption");
+          const altText = imgElement.getAttribute("alt");
+          const newFigElement = imgElement.parentNode.appendChild(newElement);
+          newFigElement.textContent = altText;
+        }
+
+        document.querySelectorAll("em")[0].nextSibling.data =
+          ": " + document.querySelectorAll("img").length;
       })();
     </script>
   </body>

@@ -109,7 +109,20 @@
     </div>
     <script>
       (function() {
-        
+        const imgElements = document.querySelectorAll("img");
+        for (let imgElement of imgElements) {
+          const altText = imgElement.getAttribute("alt");
+          imgElement.title = altText;
+        }
+        let dateString = new Date().toUTCString();
+        dateString = dateString
+          .split(" ")
+          .slice(0, 4)
+          .join(" ");
+
+        document.querySelectorAll("em")[1].nextSibling.data = ": " + dateString;
+        const hrElement = document.querySelector("hr");
+        hrElement.parentNode.removeChild(hrElement);
       })();
     </script>
   </body>
