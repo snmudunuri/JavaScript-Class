@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <title>Sticky Notes</title>
+
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      rel="stylesheet"
+      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+      crossorigin="anonymous"
+    />
+    <link href="main.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+      <div class="container d-flex justify-content-between">
+        <a href="#" class="navbar-brand">Sticky Notes</a>
+      </div>
+    </div>
+
+    <section class="jumbotron text-center">
+      <div class="container">
+        <h1 class="jumbotron-heading">Sticky Notes</h1>
+        <p class="lead text-muted">Simply add a note and save rainforests!</p>
+        <p>
+          <a href="#" class="btn btn-primary">Add a note</a>
+        </p>
+      </div>
+    </section>
+
+    <div class="board text-muted">
+      <div class="container">
+        <div class="row">
+          <div class="note">
+            <div class="note-header">
+              <h5 class="modal-title"></h5>
+            </div>
+            <div class="note-body">
+              <p class="note-text" contenteditable="true"></p>
+            </div>
+            <div class="note-footer">
+              <button type="button" class="close" aria-label="Delete">
+                <span
+                  aria-hidden="true"
+                  class="fa fa-trash-o text-danger"
+                ></span>
+              </button>
+            </div>
+          </div>
+          <div class="note">
+            <div class="note-header">
+              <h5 class="modal-title">Sticky note 2.</h5>
+            </div>
+            <div class="note-body">
+              <p class="note-text" contenteditable="true">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </p>
+            </div>
+            <div class="note-footer">
+              <button type="button" class="close" aria-label="Delete">
+                <span
+                  aria-hidden="true"
+                  class="fa fa-trash-o text-danger"
+                ></span>
+              </button>
+            </div>
+          </div>
+          <div class="note">
+            <div class="note-header">
+              <h5 class="modal-title">Sticky note 3.</h5>
+            </div>
+            <div class="note-body">
+              <p class="note-text" contenteditable="true">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </p>
+            </div>
+            <div class="note-footer">
+              <button type="button" class="close" aria-label="Delete">
+                <span
+                  aria-hidden="true"
+                  class="fa fa-trash-o text-danger"
+                ></span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="text-muted">
+      <div class="container">
+        <p class="float-right">
+          <a href="#">Back to top</a>
+        </p>
+        <p>&copy; Salvum Ligna Inc.</p>
+      </div>
+    </footer>
+    <script>
+      (function() {
+        let newElement;
+        const url = "/api/notes/";
+        let prevText = " ";
+        let data = {};
+        let id = null;
+        let serverData = {};
+        const noteContainer = document.querySelector(".row");
+        retrieveData();
+        setTimeout(function() {
+          addListeners();
+        }, 600);
+
+        document.addEventListener("click", function(event) {
+          // console.log(newElement);
+          if (newElement !== undefined) {
+            var isClickInside = newElement.contains(event.target);
+            //  console.log("tset");
+
+            if (!isClickInside) {
+              getData(newElement);
+              //     console.log(newElement.getAttribute("data-id"));
+              if (newElement.getAttribute("data-id") === null) {
+                //  console.log("loop");
+                fetch(url, {
+                  method: "POST",
+                  body: JSON.stringify(data),
+                  headers: {
+                    "Content-Type": "application/json"
+                  }
+                })
+                  .then(res => res.json())
+                  .then(function(response) {
+                    id = response._id;
+
+                    newElement.setAttribute("data-id", id);
+                    newElement.parentNode.nextElementSibling.firstElementChild.setAttribute(
+                      "data-id",
+                      id
+                    );
+                  })
+                  .catch(error => console.error("Error:", error));
+
+                prevText = getData(newElement);
+              } else if (newElement.getAttribute("data-id") !== null) {
+                //console.log("PUT loop");
+                let newURL = url + newElement.getAttribute("data-id");
+
+                if (prevText != getData(newElement)) {
+                  // console.log("New Data " + getData(newElement));
+                  //  console.log("Prev Data " + prevText);
+                  fetch(newURL, {
+                    method: "PUT",
+                    body: JSON.stringify(data),
+                    headers: {
+                      "Content-Type": "application/json"
+                    }
+                  })
+                    .then(res => res.json())
+                    .then(response => JSON.stringify(response))
+                    .catch(error => console.error("Error:", error));
+                  prevText = getData(newElement);
+                }
+              }
+            }
+          }
+        });
+        function deleteNote(element) {
+          if (element.getAttribute("data-id") === null) {
+            element.parentNode.parentNode.remove();
+          } else {
+            deleteURL = url + element.getAttribute("data-id");
+            fetch(deleteURL, {
+              method: "DELETE",
+              body: JSON.stringify(data),
+              headers: {
+                "Content-Type": "application/json"
+              }
+            })
+              .then(res => res.json())
+              .then(function(response) {
+                element.parentNode.parentNode.remove();
+              })
+              .catch(error => console.error("Error:", error));
+          }
+        }
+
+        for (let i = 0; i < 3; i++) {
+          document.querySelectorAll(".note")[i].style.display = "none";
+        }
+
+        function retrieveData() {
+          fetch("/api/notes")
+            .then(function(response) {
+              return response.json();
+            })
+            .then(function(myJson) {
+              serverData = myJson;
+              for (let i = 0; i < serverData.length; i++) {
+                let noteClass = `
+              <div class = "note">
+              	<div class = "note-header">
+      		        <h5 class = "modal-title">Sticky Notes: </h5>
+      	        </div>
+      	        <div class = "note-body">
+      		        <p class = "note-text" contenteditable = "true" data-id = ${
+                    serverData[i]._id
+                  }>
+      			        ${serverData[i].note} </p>
+      	        </div>
+      	        <div class = "note-footer">
+      	        	<button class = "close" aria-label = "Delete" data-id = ${
+                    serverData[i]._id
+                  }>
+      		        	<span aria-hidden = "true" class = "fa fa-trash-o text-danger">
+      		        	<span>
+      	        	</button>
+      	        </div>
+              </div> `;
+                let fetchDiv = document
+                  .createRange()
+                  .createContextualFragment(noteClass);
+                noteContainer.appendChild(fetchDiv);
+              }
+            });
+        }
+
+        function addListeners() {
+          const closeButton = document.querySelectorAll(".close");
+          for (
+            let i = 0;
+            i < document.querySelectorAll(".note-text").length;
+            i++
+          ) {
+            /* documen.querySelectorAll(".note-text")
+              [i].addEventListener("click", e => {
+                newElement = e.target;
+                prevText = newElement.textContent;
+              }); */
+            document
+              .querySelectorAll(".note")
+              [i].addEventListener("click", e => {
+                document.querySelectorAll(".note-text")[i].focus();
+                newElement = document.querySelectorAll(".note-text")[i];
+                prevText = newElement.textContent;
+              });
+          }
+          for (let i = 0; i < closeButton.length; i++) {
+            closeButton[i].addEventListener("click", event => {
+              event.stopPropagation();
+              deleteNote(closeButton[i]);
+            });
+          }
+        }
+
+        document
+          .querySelector(".btn.btn-primary")
+          .addEventListener("click", e => {
+            let clone1 = document.querySelector(".note");
+            let lastElement = document.querySelectorAll(".note")[
+              document.querySelectorAll(".note").length - 1
+            ];
+            let clone3 = clone1.cloneNode(true);
+            clone3.removeAttribute("style");
+            clone3.firstElementChild.firstElementChild.textContent =
+              "Sticky Notes ";
+
+            clone3.childNodes[3].firstElementChild.textContent = " ";
+
+            clone3.addEventListener("click", e => {
+              clone3.childNodes[3].firstElementChild.focus();
+              newElement = clone3.childNodes[3].firstElementChild;
+              prevText = newElement.textContent;
+            });
+
+            /*  childNodes[3].firstElementChild.addEventListener(
+              "click",
+              e => {
+                newElement = e.target;
+                prevText = newElement.textContent;
+              }
+            ); */
+            clone3.childNodes[3].firstElementChild.removeAttribute("data-id");
+            clone3.childNodes[3].firstElementChild.parentNode.nextElementSibling.firstElementChild.removeAttribute(
+              "data-id"
+            );
+            lastElement.insertAdjacentElement("afterend", clone3);
+            clone3.childNodes[3].firstElementChild.parentNode.nextElementSibling.firstElementChild.addEventListener(
+              "click",
+              event => {
+                event.stopPropagation();
+                deleteNote(
+                  clone3.childNodes[3].firstElementChild.parentNode
+                    .nextElementSibling.firstElementChild
+                );
+              }
+            );
+          });
+        //console.log(newElement);
+
+        function getData(element) {
+          let newData = element.textContent;
+          data = {
+            note: newData
+          };
+          return newData;
+        }
+      })();
+    </script>
+  </body>
+</html>
