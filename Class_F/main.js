@@ -120,11 +120,11 @@
           noteEl.remove();
           delete notesDb[id];
         });
-      } else if (id && notesDb[id].note !== noteText) {
+      } else if (id && notesDb[id] !== noteText) {
         put(id, {note: noteText}, noteObj => {
           notesDb[id] = noteObj.note;
         });
-      } else {
+      } else if(id === '') {
         post({note: noteText}, noteObj => {
           notesDb[noteObj._id] = noteObj.note;
           noteEl.dataset.id = noteObj._id;
