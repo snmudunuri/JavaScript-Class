@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8" />
+    <title>A sample page</title>
+    <script src="helper.js"></script>
+  </head>
+
+  <body>
+    <div id="main"></div>
+    <script>
+      function isPalindrome(userInput) {
+        for (let i = 0; i < userInput.length / 2; i++) {
+          if (userInput[i] != userInput[userInput.length - i - 1]) {
+            return false;
+          }
+          return true;
+        }
+      }
+      const userInput = prompt(
+        "Please enter a word to check whether it is a palindrome or not"
+      );
+
+      if (isPalindrome(userInput)) {
+        echo(userInput + " is a plaindrome");
+      } else {
+        echo(userInput + " is not a plaindrome");
+      }
+
+      echo("Examples:");
+      echo('Is "Malayalam" a palindrome: ' + isPalindrome("Malayalam"));
+      echo('Is "Apple" a palindrome: ' + isPalindrome("Apple"));
+    </script>
+  </body>
+</html>

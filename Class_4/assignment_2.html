@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8" />
+    <title>A sample page</title>
+    <script src="helper.js"></script>
+  </head>
+
+  <body>
+    <div id="main"></div>
+    <script>
+      function isPrime(i) {
+        if (i <= 1) {
+          return false;
+        } else if (i == 2) {
+          return true;
+        } else {
+          for (let j = 2; j <= Math.sqrt(i); j++) {
+            if (i % j == 0) {
+              return false;
+            }
+          }
+          return true;
+        }
+      }
+
+      for (let i = 0; i <= 100; i++) {
+        if (isPrime(i)) {
+          echo(i + " is a prime number");
+        } else {
+          echo(i + " is not a prime number");
+        }
+      }
+    </script>
+  </body>
+</html>
